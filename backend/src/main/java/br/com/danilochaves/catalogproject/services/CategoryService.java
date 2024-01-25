@@ -54,4 +54,8 @@ public class CategoryService {
     }
 
 
+    public void delete(Long id) {
+        Category entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("id not found"));
+        repository.delete(entity);
+    }
 }
