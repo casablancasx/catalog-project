@@ -3,14 +3,14 @@ package br.com.danilochaves.catalogproject.controller;
 
 import br.com.danilochaves.catalogproject.dto.CategoryDTO;
 import br.com.danilochaves.catalogproject.services.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -30,4 +30,9 @@ public class CategoryController {
         return ResponseEntity.ok(objDTO);
     }
 
+    @PostMapping
+    public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto){
+        dto = service.insert(dto);
+        return ResponseEntity.created(URI.create("/categories/" + dto.getId())).body(dto);
+    }
 }

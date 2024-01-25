@@ -1,11 +1,16 @@
 package br.com.danilochaves.catalogproject.dto;
 
 import br.com.danilochaves.catalogproject.entities.Category;
-import lombok.Data;
+import lombok.*;
 
 import java.time.Instant;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode
 public class CategoryDTO {
     private Long id;
     private String name;
