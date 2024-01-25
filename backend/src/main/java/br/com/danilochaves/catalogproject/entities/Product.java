@@ -1,14 +1,20 @@
 package br.com.danilochaves.catalogproject.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-import java.util.ArrayList;
+
+import java.time.Instant;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Builder
 @Entity
 @Table(name = "tb_product")
 public class Product {
@@ -19,10 +25,11 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
+    private Instant date;
     private String imgUrl;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"),inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 }
