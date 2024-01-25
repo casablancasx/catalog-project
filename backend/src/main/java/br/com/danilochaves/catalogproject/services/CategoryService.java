@@ -44,4 +44,14 @@ public class CategoryService {
         repository.save(entity);
         return new CategoryDTO(entity);
     }
+
+    public CategoryDTO update(Long id, CategoryDTO dto) {
+        Category entity = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("The entity cannot be updated because the id" +"("+ id+")" + " was not found!"));
+        entity.setName(dto.getName());
+        entity.setUpdatedAt(Instant.now());
+        repository.save(entity);
+        return new CategoryDTO(entity);
+    }
+
+
 }

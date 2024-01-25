@@ -17,4 +17,5 @@ public class Category {
     @NotBlank @Size(max = 20)
     private String name;
     private Instant createdAt;
+    private Instant updatedAt;
 }
