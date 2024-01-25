@@ -1,10 +1,8 @@
 package br.com.danilochaves.catalogproject.controller;
 
 
-import br.com.danilochaves.catalogproject.dto.CategoryDTO;
+
 import br.com.danilochaves.catalogproject.dto.ProductDTO;
-import br.com.danilochaves.catalogproject.entities.Product;
-import br.com.danilochaves.catalogproject.services.CategoryService;
 import br.com.danilochaves.catalogproject.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

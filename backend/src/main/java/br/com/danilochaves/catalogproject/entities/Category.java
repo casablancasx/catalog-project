@@ -2,7 +2,7 @@ package br.com.danilochaves.catalogproject.entities;
 
 import br.com.danilochaves.catalogproject.dto.CategoryDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
