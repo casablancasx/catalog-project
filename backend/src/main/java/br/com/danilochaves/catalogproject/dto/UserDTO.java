@@ -22,7 +22,7 @@ public class UserDTO {
     private String email;
     private String password;
 
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
 
     public UserDTO(Long id, String firstName, String lastName, String email) {
         this.id = id;
@@ -36,7 +36,7 @@ public class UserDTO {
         firstName = entity.getFirstName();
         lastName = entity.getLastName();
         email = entity.getEmail();
-        entity.getRoles().forEach((role) -> this.roles.add(role));
+        entity.getRoles().forEach((role) -> this.roles.add(new RoleDTO(role)));
     }
 }
 

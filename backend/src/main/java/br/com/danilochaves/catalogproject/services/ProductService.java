@@ -6,10 +6,12 @@ import br.com.danilochaves.catalogproject.entities.Category;
 import br.com.danilochaves.catalogproject.entities.Product;
 import br.com.danilochaves.catalogproject.repositories.CategoryRepository;
 import br.com.danilochaves.catalogproject.repositories.ProductRepository;
+import br.com.danilochaves.catalogproject.services.exceptions.DataBaseException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceAlreadyExistException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,12 +32,14 @@ public class ProductService {
         Page<ProductDTO> listToDTO = listEntity.map((cat) -> new ProductDTO(cat));
         return listToDTO;
     }
+
     @Transactional
     public ProductDTO findById(Long id) {
         Optional<Product> optionalProduct = repository.findById(id);
         Product entity = optionalProduct.orElseThrow(() -> new ResourceNotFoundException("Product not found, id:" + id));
         return new ProductDTO(entity,entity.getCategories());
     }
+
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
         Optional<Product> optinal = repository.findByName(dto.getName());
@@ -48,6 +52,7 @@ public class ProductService {
         repository.save(entity);
         return new ProductDTO(entity,entity.getCategories());
     }
+
     @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
         Product entity = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("The product cannot be updated because the id" +"("+ id+")" + " was not found!"));
@@ -56,10 +61,13 @@ public class ProductService {
         return new ProductDTO(entity,entity.getCategories());
     }
 
-
     public void delete(Long id) {
         Product entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("id not found"));
-        repository.delete(entity);
+        try{
+            repository.delete(entity);
+        }catch (DataIntegrityViolationException e){
+            throw new DataBaseException("This id ("+ id +") has other associated elements. Unable to delete!");
+        }
     }
 
     private void copyDtoToEntity(ProductDTO dto, Product entity) {
