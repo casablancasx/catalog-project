@@ -7,16 +7,17 @@ import br.com.danilochaves.catalogproject.services.exceptions.ResourceNotFoundEx
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.Instant;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class RestExeceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<StandardError> notFound(ResourceNotFoundException exception, HttpServletRequest request){
+    public ResponseEntity<StandardError> notFound(ResourceNotFoundException exception, HttpServletRequest request) {
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.NOT_FOUND.value());
@@ -27,7 +28,7 @@ public class RestExeceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ResourceAlreadyExistException.class)
-    public ResponseEntity<StandardError> entityAlreadyExist(ResourceAlreadyExistException exception, HttpServletRequest request){
+    public ResponseEntity<StandardError> entityAlreadyExist(ResourceAlreadyExistException exception, HttpServletRequest request) {
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.CONFLICT.value());
@@ -38,7 +39,7 @@ public class RestExeceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(DataBaseException.class)
-    public ResponseEntity<StandardError> dataBaseException(DataBaseException exception, HttpServletRequest request){
+    public ResponseEntity<StandardError> dataBaseException(DataBaseException exception, HttpServletRequest request) {
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -48,3 +49,4 @@ public class RestExeceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
     }
 }
+
