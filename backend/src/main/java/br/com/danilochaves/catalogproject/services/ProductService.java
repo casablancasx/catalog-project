@@ -9,12 +9,13 @@ import br.com.danilochaves.catalogproject.repositories.ProductRepository;
 import br.com.danilochaves.catalogproject.services.exceptions.DataBaseException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceAlreadyExistException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceNotFoundException;
-import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Optional;

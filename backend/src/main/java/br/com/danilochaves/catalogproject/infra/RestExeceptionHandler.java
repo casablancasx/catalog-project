@@ -4,14 +4,18 @@ package br.com.danilochaves.catalogproject.infra;
 import br.com.danilochaves.catalogproject.services.exceptions.DataBaseException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceAlreadyExistException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceNotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 @RestControllerAdvice
@@ -48,5 +52,6 @@ public class RestExeceptionHandler extends ResponseEntityExceptionHandler {
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
     }
+
 }
 

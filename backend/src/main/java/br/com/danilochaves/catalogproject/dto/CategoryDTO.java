@@ -1,9 +1,9 @@
 package br.com.danilochaves.catalogproject.dto;
 
 import br.com.danilochaves.catalogproject.entities.Category;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 
 @Getter

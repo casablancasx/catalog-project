@@ -13,7 +13,6 @@ import br.com.danilochaves.catalogproject.repositories.UserRepository;
 
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceAlreadyExistException;
 import br.com.danilochaves.catalogproject.services.exceptions.ResourceNotFoundException;
-import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

@@ -2,11 +2,12 @@ package br.com.danilochaves.catalogproject.dto;
 
 import br.com.danilochaves.catalogproject.entities.Category;
 import br.com.danilochaves.catalogproject.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;

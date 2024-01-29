@@ -1,14 +1,11 @@
 package br.com.danilochaves.catalogproject.dto;
 
-import br.com.danilochaves.catalogproject.entities.Role;
+
 import br.com.danilochaves.catalogproject.entities.User;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
